@@ -3,27 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListarComponent } from './Persona/listar/listar.component';
-import { AddComponent } from './Persona/add/add.component';
-import { EditarComponent } from './Persona/editar/editar.component';
-import { FormsModule } from '@angular/forms';
-import { ServiceService } from '../app/Service/service.service';
-import { HttpClientModule } from '@angular/common/http';
+import { ListComponent } from './Client/list/list.component';
+import { AddComponent } from './Client/add/add.component';
+import { EditComponent } from './Client/edit/edit.component';
+import { DeleteComponent } from './Client/delete/delete.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListarComponent,
+    ListComponent,
     AddComponent,
-    EditarComponent
+    EditComponent,
+    DeleteComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule
+    AppRoutingModule
   ],
-  providers: [ServiceService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

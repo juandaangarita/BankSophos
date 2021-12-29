@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddComponent } from './Persona/add/add.component';
-import { EditarComponent } from './Persona/editar/editar.component';
-import { ListarComponent } from './Persona/listar/listar.component';
+import { AddComponent } from './Client/add/add.component';
+import { DeleteComponent } from './Client/delete/delete.component';
+import { EditComponent } from './Client/edit/edit.component';
+import { ListComponent } from './Client/list/list.component';
 
 const routes: Routes = [
-  {path: 'listar', component:ListarComponent},
-  {path: 'add', component:AddComponent},
-  {path: 'edit', component:EditarComponent},
+  {path:'list', component:ListComponent},
+  {path:'add', component:AddComponent},
+  {path:'edit', component:EditComponent},
+  {path:'delete', component:DeleteComponent},
 ];
 
 @NgModule({
