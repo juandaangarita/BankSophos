@@ -9,9 +9,15 @@ export class ServiceService {
 
   constructor(private http:HttpClient) { }
 
-  Url='http://localhost:8080/clients/list';
+  Urlget='http://localhost:8080/clients/list';
+  Urlpost='http://localhost:8080/clients/add';
+
 
   public getClient(){
-    return this.http.get<Client[]>(this.Url);
+    return this.http.get<Client[]>(this.Urlget);
+  }
+
+  public addClient(client:Client){
+    return this.http.post<Client[]>(this.Urlpost,client);
   }
 }

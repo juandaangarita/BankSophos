@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'front_bank';
+  title = 'Bank Sophos';
 
   constructor(private router:Router){}
 

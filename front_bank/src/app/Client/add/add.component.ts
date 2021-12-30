@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Client } from 'src/app/Model/Client';
+import { ServiceService } from 'src/app/Service/service.service';
 
 @Component({
   selector: 'app-add',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router, private service:ServiceService) { }
 
   ngOnInit(): void {
+  }
+
+  Add(client: Client){
+    this.service.addClient(client)
+    .subscribe(data=>{
+      alert("Se ha creado el cliente correctamente");
+      this.router.navigate(["list"]);
+
+    })
   }
 
 }

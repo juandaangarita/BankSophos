@@ -26,8 +26,13 @@ public class ClientService implements InterfaceClientService {
     }
 
     @Override
-    public int save(Client p) {
-        return 0;
+    public Client add(Client c) {
+        return data.save(c);
+    }
+
+    @Override
+    public Client edit(Client c) {
+        return null;
     }
 
     @Override

@@ -8,6 +8,7 @@ import java.util.Optional;
 public interface InterfaceClientService {
     public List<Client> list();
     public Optional<Client> listId(int id);
-    public int save(Client p);
+    public Client add(Client c);
+    public Client edit(Client c);
     public void delete(int id);
 }
