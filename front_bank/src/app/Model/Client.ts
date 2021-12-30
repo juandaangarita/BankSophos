@@ -1,5 +1,5 @@
 export class Client{
-    id:number | undefined;
+    id?:number | undefined;
     typeId:String | undefined;
     numberId:String | undefined;
     lastname:String | undefined;
@@ -7,5 +7,5 @@ export class Client{
     email:String | undefined;
     dateBirth:String | undefined;
     telephone:String | undefined;
-    dateCreation:String | undefined;
+    dateCreation?:String | undefined;
 }

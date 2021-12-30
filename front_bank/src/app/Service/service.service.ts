@@ -18,6 +18,6 @@ export class ServiceService {
   }
 
   public addClient(client:Client){
-    return this.http.post<Client[]>(this.Urlpost,client);
+    return this.http.post<Client>(this.Urlpost,client);
   }
 }

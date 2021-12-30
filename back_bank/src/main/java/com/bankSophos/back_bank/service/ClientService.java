@@ -22,7 +22,7 @@ public class ClientService implements InterfaceClientService {
 
     @Override
     public Optional<Client> listId(int id) {
-        return Optional.empty();
+        return data.findById(id);
     }
 
     @Override
@@ -32,11 +32,11 @@ public class ClientService implements InterfaceClientService {
 
     @Override
     public Client edit(Client c) {
-        return null;
+        return data.save(c);
     }
 
     @Override
     public void delete(int id) {
-
+        data.deleteById(id);
     }
 }
