@@ -13,16 +13,15 @@ import java.util.List;
 
 @Controller
 @RestController
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
-@RequestMapping({"/clients"})
+@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/clients")
 public class controller {
 
     @Autowired
     InterfaceClientService service;
 
-    @GetMapping("/lists")
+    @GetMapping("/list")
     public List<Client> list(){
-        System.out.println(service.list());
         return service.list();
     }
 

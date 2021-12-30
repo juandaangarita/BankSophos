@@ -8,11 +8,11 @@
 		<version>2.6.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>back_bank</artifactId>
+	<groupId>com.bankSophos</groupId>
+	<artifactId>back_bankSophos</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>back_bank</name>
-	<description>Demo project for Spring Boot</description>
+	<name>back_bankSophos</name>
+	<description>Backend del proyecto final del bootcamp de sophos</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -40,6 +40,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
