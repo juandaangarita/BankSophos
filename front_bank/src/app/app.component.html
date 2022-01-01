@@ -1,17 +1,17 @@
-<div style="text-align: center;">
-<h2>
-  ¡Bienvenido a {{ title }}!
-</h2>
-<img
-    width="100"
-    alt="Logo bank"
-    src="https://img.icons8.com/clouds/100/000000/bank.png"
-  />
-</div>
-<div class="container">
-  <button (click)="List()" class="btn btn-info">Listar clientes</button>
-  <button (click)="New()" class="btn btn-info" style="margin-left: 10px;">Nuevo cliente</button>
-
-</div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="">
+      <img src="https://img.icons8.com/clouds/100/000000/bank.png" alt="Logo bank" width="50">
+      BankSophos
+    </a>
+    <button (click)="New()" class="btn btn-dark" type="submit">Crear Cliente</button>
+    <button (click)="List()" class="btn btn-dark" type="submit" style="margin-left: 10px ;">Gestionar Cliente</button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">    
+    </div>
+    <span class="navbar-text">
+      ¡Bienvenido a {{ title }}!
+    </span>
+  </div>  
+</nav>
 <hr>
 <router-outlet></router-outlet>

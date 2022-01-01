@@ -1,15 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddComponent } from './Client/add/add.component';
-import { DeleteComponent } from './Client/delete/delete.component';
-import { EditComponent } from './Client/edit/edit.component';
-import { ListComponent } from './Client/list/list.component';
+import { AddClientComponent } from './Client/add-client/add-client.component';
+import { EditClientComponent } from './Client/edit-client/edit-client.component';
+import { DeleteClientComponent } from './Client/delete-client/delete-client.component';
+import { ListClientComponent } from './Client/list-client/list-client.component';
+import { LandingComponent } from './Landing/landing/landing.component';
 
 const routes: Routes = [
-  {path:'list', component:ListComponent},
-  {path:'add', component:AddComponent},
-  {path:'edit', component:EditComponent},
-  {path:'delete', component:DeleteComponent},
+  {path:'', component:LandingComponent},
+  // To list all the clients
+  {path:'clients', component:ListClientComponent},
+  // To create a client
+  {path:'addClient', component:AddClientComponent},
+  // To edit a client info
+  {path:'client/idclient=', component:EditClientComponent},
+  //To delete a client
+  {path:'deleteClient', component:DeleteClientComponent},
 ];
 
 @NgModule({
