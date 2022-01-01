@@ -6,18 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-//@SpringBootApplication
-//public class BackBankApplication {
-//
-//	public static void main(String[] args) {
-//
-//		SpringApplication.run(BackBankApplication.class, args);
-//	}
-//
-//}
-
-
-
 @SpringBootApplication
 public class BackBankApplication {
 
@@ -26,11 +14,31 @@ public class BackBankApplication {
 	}
 
 	@Bean
-	public WebMvcConfigurer corsConfigurer() {
+	public WebMvcConfigurer corsConfigurerClients() {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/clients").allowedOrigins("http://localhost:4200");
+			}
+		};
+	}
+
+	@Bean
+	public WebMvcConfigurer corsConfigurerProducts() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/products").allowedOrigins("http://localhost:4200");
+			}
+		};
+	}
+
+	@Bean
+	public WebMvcConfigurer corsConfigurerTransactions() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/transaction").allowedOrigins("http://localhost:4200");
 			}
 		};
 	}
