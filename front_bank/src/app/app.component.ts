@@ -12,6 +12,10 @@ export class AppComponent {
 
   constructor(private router:Router){}
 
+  ngOnInit(): void {
+    this.router.navigate(['']);
+  }
+
   List(){
     this.router.navigate(["clients"]);    
   }
@@ -20,7 +24,5 @@ export class AppComponent {
     this.router.navigate(["addClient"]);
   }
 
-  Edit(){
-    this.router.navigate(["editClient"]);
-  }
+
 }

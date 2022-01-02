@@ -1,47 +1,112 @@
-<div class="container col-md-6">
-    <div class="card">
-        <div class="card-header">
-            <h3>Editar datos de Clientes</h3>
-        </div>
-        <div class="card-body">
-            <form class="row g-3 needs-validation" action="">
-                <div class="form-group col-md-6">
-                    <label for="">Nombre</label>
-                    <input id="" type="text" class="form-control" placeholder="Adele" required>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="lastname">Apellidos</label>
-                    <input type="text" class="form-control" placeholder="Adkins" required>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="typeId">Tipo de identificación</label>
-                    <select id="typeId" class="form-select" required>
-                        <option value="CC" selected>Cédula ciudadania</option>
-                        <option value="PA">Pasaporte</option>
-                        <option value="NIT">NIT</option>
-                        <option value="CE">Cédula extranjeria</option>
-                        <option value="TI">Tarjeta de identidad</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-8">
-                    <label for="">Número de identificación</label>
-                    <input type="text" class="form-control" placeholder="123456789" required>
-                </div>
-                <div class="form-group">
-                    <label for="">Correo electronico</label>
-                    <input type="email" class="form-control" placeholder="name_example@email.com" required>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="">Teléfono</label>
-                    <input type="text" class="form-control" placeholder="3111111111" required>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="">Fecha de nacimiento</label>
-                    <input type="date" class="form-control" required>
-                </div>
-                <button class="btn btn-danger" type="submit">Guardar</button>
-            </form>
-            
-        </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="card col-md-3">
+      <div class="card-header">
+        <h3>Gestionar Clientes</h3>
+      </div>
+      <div class="card-body">
+        <form class="row g-0 needs-validation" action="">
+          <div class="form-group col-md-12 col-form-label-sm">
+            <label for="name">Nombre</label>
+            <input
+              id="name"
+              type="text"
+              class="form-control"
+              placeholder="Adele"
+              name="name"
+              [(ngModel)]="currentClient.name"
+              required
+            />
+          </div>
+          <div class="form-group col-md-12 col-form-label-sm">
+            <label for="lastname">Apellidos</label>
+            <input
+              id="lastname"
+              type="text"
+              class="form-control"
+              placeholder="Adkins"
+              name="lastname"
+              [(ngModel)]="currentClient.lastname"
+              required
+            />
+          </div>
+          <div class="form-group col-md-4 col-form-label-sm">
+            <label for="typeId">Tipo id</label>
+            <select
+              id="typeId"
+              class="form-select"
+              name="typeId"
+              [(ngModel)]="currentClient.typeId"
+              required
+            >
+              <option value="CC" selected>CC | Cédula ciudadania</option>
+              <option value="PA">PA | Pasaporte</option>
+              <option value="NIT">NIT | NIT</option>
+              <option value="CE">CE | Cédula extranjeria</option>
+              <option value="TI">TI | Tarjeta de identidad</option>
+            </select>
+          </div>
+          <div class="form-group col-md-8 col-form-label-sm">
+            <label for="numberId">Número de identificación</label>
+            <input
+              id="numberId"
+              type="text"
+              class="form-control"
+              placeholder="123456789"
+              name="numberId"
+              [(ngModel)]="currentClient.numberId"
+              required
+            />
+          </div>
+          <div class="form-group col-md-12 col-form-label-sm">
+            <label for="email">Correo electronico</label>
+            <input
+              id="email"
+              type="email"
+              class="form-control"
+              placeholder="name_example@email.com"
+              name="email"
+              [(ngModel)]="currentClient.email"
+              required
+            />
+          </div>
+          <div class="form-group col-md-12 col-form-label-sm">
+            <label for="telephone">Teléfono</label>
+            <input
+              id="telephone"
+              type="text"
+              class="form-control"
+              placeholder="3111111111"
+              name="telephone"
+              [(ngModel)]="currentClient.telephone"
+              required
+            />
+          </div>
+          <div class="form-group col-md-12 col-form-label-sm">
+            <label for="dateBirth">Fecha de nacimiento</label>
+            <input
+              id="dateBirth"
+              type="date"
+              class="form-control"
+              name="dateBirth"
+              [(ngModel)]="currentClient.dateBirth"
+              required
+            />
+          </div>
+          <button (click)="updateClient()" class="btn btn-success col-md-3" style="margin-left: 10px;" type="submit">
+            Actualizar
+          </button>
+
+          <button (click)="deleteClient()" class="btn btn-danger col-md-3" style="margin-left: 10px;" type="submit">
+            Eliminar
+          </button>
+
+          <button (click)="backClient()" class="btn btn-info col-md-3" style="margin-left: 10px;" type="submit">Atrás</button>
+        </form>
+      </div>
     </div>
+    <div class="container col-md-9">
+      <app-list-product></app-list-product>
+    </div>
+  </div>
 </div>

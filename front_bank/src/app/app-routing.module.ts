@@ -13,9 +13,9 @@ const routes: Routes = [
   // To create a client
   {path:'addClient', component:AddClientComponent},
   // To edit a client info
-  {path:'client/idclient=', component:EditClientComponent},
+  {path:'clients/:id/products', component:EditClientComponent},
   //To delete a client
-  {path:'deleteClient', component:DeleteClientComponent},
+  {path:'clients/:id/products', component:DeleteClientComponent},
 ];
 
 @NgModule({

@@ -11,6 +11,9 @@ import { AddClientComponent } from './Client/add-client/add-client.component';
 import { EditClientComponent } from './Client/edit-client/edit-client.component';
 import { DeleteClientComponent } from './Client/delete-client/delete-client.component';
 import { ListClientComponent } from './Client/list-client/list-client.component';
+import { ListProductComponent } from './Product/list-product/list-product.component';
+import { AddProductComponent } from './Product/add-product/add-product.component';
+import { DeleteProductComponent } from './Product/delete-product/delete-product.component';
 
 
 @NgModule({
@@ -20,7 +23,10 @@ import { ListClientComponent } from './Client/list-client/list-client.component'
     AddClientComponent,
     EditClientComponent,
     DeleteClientComponent,
-    ListClientComponent
+    ListClientComponent,
+    ListProductComponent,
+    AddProductComponent,
+    DeleteProductComponent
   ],
   imports: [
     BrowserModule,

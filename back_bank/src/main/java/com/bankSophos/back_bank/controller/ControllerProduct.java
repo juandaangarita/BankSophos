@@ -10,14 +10,14 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/clients/idClient={idClient}/products")
+@RequestMapping("/clients/{idClient}/products")
 public class ControllerProduct {
 
     @Autowired
     InterfaceProductService serviceProduct;
 
     //List products owned by the client
-    @GetMapping("/list")
+    @GetMapping("")
     public List<Product> listIdProduct(@PathVariable("idClient") int idClient){
         return serviceProduct.listIdProduct(idClient);
     }
@@ -31,13 +31,13 @@ public class ControllerProduct {
     }
 
     //Get one product of a client
-    @GetMapping("/list/idProduct={idProduct}/changeStatus")
+    @GetMapping("/{idProduct}")
     public Optional<Product> ListIdOneProduct(@PathVariable("idClient")int idClient, @PathVariable("idProduct") int idProduct){
         return serviceProduct.listIdOneProduct(idClient, idProduct);
     }
 
     //Change status to active or inactive
-    @PutMapping("/list/idProduct={idProduct}/changeStatus")
+    @PutMapping("/{idProduct}/changeStatus")
     public Product changeStatus(Product product, @PathVariable("idProduct") int idProduct, @PathVariable("idClient") int idClient){
         product.setIdProduct(idProduct);
         product.setIdClient(product.getIdClient());
@@ -55,13 +55,13 @@ public class ControllerProduct {
     }
 
     //Get one product of a client
-    @GetMapping("/list/idProduct={idProduct}/cancel")
+    @GetMapping("/{idProduct}/cancel")
     public Optional<Product> ListIdOneProduct2(@PathVariable("idClient")int idClient, @PathVariable("idProduct") int idProduct){
         return serviceProduct.listIdOneProduct(idClient, idProduct);
     }
 
     //Change status to cancel
-    @PutMapping("/list/idProduct={idProduct}/cancel")
+    @PutMapping("/{idProduct}/cancel")
     public Product cancelProduct(Product product, @PathVariable("idProduct") int idProduct, @PathVariable("idClient") int idClient){
         if (product.getBalance()==0){
             product.setIdProduct(idProduct);

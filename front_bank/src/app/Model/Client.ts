@@ -1,4 +1,4 @@
-export class Client{
+export interface Client{
     id?:number;
     typeId?:String ;
     numberId?:String ;

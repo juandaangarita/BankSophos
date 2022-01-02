@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http:localhost:4200")
 @RestController
-@RequestMapping("/clients/idClient={idClient}/products/idProduct={idProduct}")
+@RequestMapping("/clients/{idClient}/products/{idProduct}")
 public class ControllerTransaction {
 }

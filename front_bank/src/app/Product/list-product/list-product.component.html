@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="btn-holder" style="
+        display: flex; margin-bottom: 10px;">
+    <button class="btn btn-success">Crear Producto</button>    
+    </div>
+    <div *ngFor="let product of products" class="card" style="margin-bottom: 10px;"> 
+        <div  class="card-header">
+            <h3>Cuenta de {{product.typeAccount}}</h3>
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <span>Número de cuenta: </span> {{product.numberAccount}}
+                </li>
+                <li class="list-group-item">
+                    <span>Saldo: </span> {{product.balance}}
+                </li>
+                <li class="list-group-item">
+                    <span>Estado: </span> {{product.state}}
+                </li>
+                <li class="list-group-item">
+                    <span>Fecha creación: </span> {{product.creationDate}}
+                </li>
+            </ul>
+        </div>
+        <div class="btn-holder" style="justify-content: flex-end;
+        display: flex; margin-bottom: 10px;">
+            <button class="btn btn-warning">Cambiar Estado</button>
+            <button class="btn btn-danger" style="margin-left: 10px; margin-right: 10px;">Cancelar Producto</button>
+        </div>
+    </div>
+    <hr>
+</div>

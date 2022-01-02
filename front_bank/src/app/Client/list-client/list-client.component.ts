@@ -10,12 +10,23 @@ import { ClientService } from 'src/app/Service/client.service';
 })
 export class ListClientComponent implements OnInit {
 
-  clients:Client[] | undefined;
+  clients?:Client[];
+  currentClient: Client ={};
+  currentIndex = -1;
+
 
   constructor(private service:ClientService, private router:Router) { }
 
   ngOnInit(): void {
     this.service.getClient().subscribe(data=>{this.clients=data;})
+  }
+
+  setActiveClient(client: Client): void{
+    this.currentClient = client;
+  }
+
+  EditClient(idClient: number | undefined): void{
+    this.router.navigate(["clients/",idClient,"products"]);
   }
 
 }
