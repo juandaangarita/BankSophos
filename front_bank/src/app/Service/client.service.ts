@@ -32,11 +32,13 @@ export class ClientService {
 
   //Update client info
   updateClient(id: any, data: any): Observable<any>{
-    return this.http.put(this.UrlClient, data);
+    const url = `${this.UrlClient}${id}`
+    return this.http.put(url, data);
   }
 
   //Delete client
   deleteClient(id:any): Observable<any>{
-    return this.http.delete(this.UrlClient);
+    const url = `${this.UrlClient}${id}`
+    return this.http.delete(url);
   }
 }

@@ -28,4 +28,8 @@ export class ListProductComponent implements OnInit {
     })
   }
 
+  AddProduct(): void{
+    this.router.navigate(["/products/add"]);
+  }
+
 }

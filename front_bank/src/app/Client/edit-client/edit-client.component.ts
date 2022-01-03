@@ -62,7 +62,8 @@ export class EditClientComponent implements OnInit {
     this.clientService.updateClient(this.currentClient.id, this.currentClient)
     .subscribe({
       next: (res) => {
-        alert("La información del cliente fue actualizada con éxito");
+        alert("La información del cliente fue actualizada con éxito. Será redirigido a la página de gestión de clientes");
+        this.router.navigate(['/clients']);
       },
       error: (e) => console.error(e)
     });
@@ -72,7 +73,7 @@ export class EditClientComponent implements OnInit {
     this.clientService.deleteClient(this.currentClient.id)
     .subscribe({
       next: (res) => {
-        alert("El cliente fue borrado con éxito de la base de datos");
+        alert("El cliente fue borrado con éxito de la base de datos. Será redirigido a la página de gestión de clientes");
         this.router.navigate(['/clients']);
       },
       error: (e) => console.error(e)
