@@ -14,6 +14,8 @@ import { ListClientComponent } from './Client/list-client/list-client.component'
 import { ListProductComponent } from './Product/list-product/list-product.component';
 import { AddProductComponent } from './Product/add-product/add-product.component';
 import { DeleteProductComponent } from './Product/delete-product/delete-product.component';
+import { RouterModule } from '@angular/router';
+import { MoneyComponent } from './Product/money/money.component';
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import { DeleteProductComponent } from './Product/delete-product/delete-product.
     ListClientComponent,
     ListProductComponent,
     AddProductComponent,
-    DeleteProductComponent
+    DeleteProductComponent,
+    MoneyComponent
   ],
   imports: [
     BrowserModule,
@@ -38,3 +41,7 @@ import { DeleteProductComponent } from './Product/delete-product/delete-product.
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+function routes(routes: any, arg1: { onSameUrlNavigation: "reload"; }): any[] | import("@angular/core").Type<any> | import("@angular/core").ModuleWithProviders<{}> {
+  throw new Error('Function not implemented.');
+}
+

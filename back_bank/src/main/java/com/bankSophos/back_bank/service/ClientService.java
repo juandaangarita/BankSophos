@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ClientService implements InterfaceClientService {
@@ -21,7 +20,7 @@ public class ClientService implements InterfaceClientService {
     }
 
     @Override
-    public Optional<Client> listId(int id) {
+    public Client listIdOneClient(int id) {
         return data.findById(id);
     }
 

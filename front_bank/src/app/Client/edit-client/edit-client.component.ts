@@ -22,17 +22,6 @@ export class EditClientComponent implements OnInit {
     telephone: '',
     dateCreation: '',
   };
-
-  // @Input() currentClient: Client = {
-  //   typeId: '',
-  //   numberId: '',
-  //   lastname: '',
-  //   name: '',
-  //   email: '',
-  //   dateBirth: '',
-  //   telephone: '',
-  //   dateCreation: '',
-  // };
   
   constructor(
     private clientService: ClientService,

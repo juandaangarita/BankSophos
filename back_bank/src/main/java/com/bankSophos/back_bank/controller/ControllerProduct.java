@@ -38,7 +38,7 @@ public class ControllerProduct {
 
     //Change status to active or inactive
     @PutMapping("/{idProduct}/changeStatus")
-    public Product changeStatus(Product product,@PathVariable("idProduct") int idProduct){
+    public Product changeStatus(Product product, @PathVariable("idProduct") int idProduct){
         product = ListIdOneProduct(idProduct);
         product.setIdProduct(idProduct);
         product.setIdClient(product.getIdClient());
@@ -63,7 +63,7 @@ public class ControllerProduct {
 
     //Change status to active or inactive
     @PutMapping("/{idProduct}/cancel")
-    public Product cancelProduct(Product product,@PathVariable("idProduct") int idProduct){
+    public Product cancelProduct(Product product, @PathVariable("idProduct") int idProduct){
         product = ListIdOneProduct(idProduct);
         product.setIdProduct(idProduct);
         product.setIdClient(product.getIdClient());
@@ -81,18 +81,23 @@ public class ControllerProduct {
         return serviceProduct.changeStatus(product);
     }
 
-//    //Change status to cancel
-//    @PutMapping("/{idProduct}/cancel")
-//    public Product cancelProduct(Product product, @PathVariable("idProduct") int idProduct, @PathVariable("idClient") int idClient){
-//        if (product.getBalance()==0){
-//            product.setIdProduct(idProduct);
-//            product.setState("Cancelado");
-//        }
-//        else{
-//            System.out.println("El producto no puede ser cancelado ya que aun dispone de saldo, puede realizar el cambio a inactivo si así lo desea");
-//        }
-//        return serviceProduct.cancelProduct(product, idClient);
-//    }
+    //Change status to active or inactive
+    @PutMapping("/{idProduct}/{money}")
+    public Product addMovement(Product product, @PathVariable("idProduct") int idProduct, @PathVariable("money") int money){
+        product = ListIdOneProduct(idProduct);
+        product.setIdProduct(idProduct);
+        product.setIdClient(product.getIdClient());
+        product.setTypeAccount(product.getTypeAccount());
+        product.setNumberAccount(product.getNumberAccount());
+        product.setCreationDate(product.getCreationDate());
+        product.setState(product.getState());
+        if (product.getBalance()>=0)
+        {
+            product.setBalance(product.getBalance() + money);
+        }
+        return serviceProduct.changeStatus(product);
+    }
+
 
 
 }

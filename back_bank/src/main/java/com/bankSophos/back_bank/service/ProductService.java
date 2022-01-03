@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductService implements InterfaceProductService {
@@ -26,11 +25,6 @@ public class ProductService implements InterfaceProductService {
     }
 
     @Override
-    public Optional<Product> listIdOneProduct2(int idClient, int idProduct) {
-        return dataProduct.findById(idProduct);
-    }
-
-    @Override
     public Product addProduct(Product product, int idClient) {
         return dataProduct.save(product);
     }
@@ -41,7 +35,12 @@ public class ProductService implements InterfaceProductService {
     }
 
     @Override
-    public Product cancelProduct(Product product, int idClient) {
+    public Product cancelProduct(Product product) {
+        return dataProduct.save(product);
+    }
+
+    @Override
+    public Product addToBalance(Product product, int movement) {
         return dataProduct.save(product);
     }
 }

@@ -6,6 +6,7 @@ import { DeleteClientComponent } from './Client/delete-client/delete-client.comp
 import { ListClientComponent } from './Client/list-client/list-client.component';
 import { LandingComponent } from './Landing/landing/landing.component';
 import { AddProductComponent } from './Product/add-product/add-product.component';
+import { MoneyComponent } from './Product/money/money.component';
 
 const routes: Routes = [
   {path:'', component:LandingComponent},
@@ -19,6 +20,8 @@ const routes: Routes = [
   {path:'clients/:id/products', component:DeleteClientComponent},
   //To create a product
   {path:'clients/:id/products/add', component:AddProductComponent},
+  //To make movement of money
+  {path:'clients/:id/products/:idProduct/money', component:MoneyComponent},
 ];
 
 @NgModule({

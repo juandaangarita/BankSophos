@@ -1,43 +1,68 @@
 <div class="container">
-    <div class="btn-holder" style="
-        display: flex; margin-bottom: 10px;">
-        <button (click)="AddProduct(9)" class="btn btn-success">Crear Producto</button>         
+  <div class="btn-holder" style="display: flex; margin-bottom: 10px">
+    <button (click)="AddProduct(9)" class="btn btn-success">
+      Crear Producto
+    </button>
+  </div>
+
+  <div
+    *ngFor="let product of products"
+    class="card"
+    style="margin-bottom: 10px"
+  >
+    <div class="card-header">
+      <h3>Cuenta de {{ product.typeAccount }}</h3>
     </div>
-         
-    <div *ngFor="let product of products" class="card" style="margin-bottom: 10px;"> 
-        <div  class="card-header">
-            <h3>Cuenta de {{product.typeAccount}}</h3>
-        </div>
-        <div class="card-body">
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <span>Número de cuenta: </span> {{product.numberAccount}}
-                </li>
-                <li class="list-group-item">
-                    <span>Saldo: </span> {{product.balance}}
-                </li>
-                <li class="list-group-item">
-                    <span>Estado: </span> {{product.state}}
-                </li>
-                <li class="list-group-item">
-                    <span>Fecha creación: </span> {{product.creationDate}}
-                </li>
-            </ul>
-        </div>
-        <div class="btn-holder" style="justify-content: flex-end;
-        display: flex; margin-bottom: 10px;">
-            <!-- <button class="btn btn-primary" type="success" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            Button with data-bs-target
-          </button> -->
-            <button class="btn btn-warning">Cambiar Estado</button>
-            <button class="btn btn-danger" style="margin-left: 10px; margin-right: 10px;">Cancelar Producto</button>
-        </div>
-        <!-- <div class="collapse" id="#collapseExample">
+    <div class="card-body">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <span>Número de cuenta: </span> {{ product.numberAccount }}
+        </li>
+        <li class="list-group-item">
+          <span>Saldo: </span> {{ product.balance }}
+        </li>
+        <li class="list-group-item">
+          <span>Estado: </span> {{ product.state }}
+        </li>
+        <li class="list-group-item">
+          <span>Fecha creación: </span>
+          {{ product.creationDate }}
+        </li>
+      </ul>
+    </div>
+    <div
+      class="btn-holder"
+      style="justify-content: flex-end; display: flex; margin-bottom: 10px"
+    >
+      <button
+        (click)="addMovementMoney(product.idClient, product.idProduct)"
+        class="btn btn-success"
+        style="margin-left: 10px; margin-right: 10px"
+      >
+        Movimiento
+      </button>
+
+      <button
+        (click)="updateProduct(product.idClient, product.idProduct)"
+        class="btn btn-warning"
+      >
+        Cambiar Estado
+      </button>
+      <button
+        (click)="cancelProduct(product.idClient, product.idProduct)"
+        class="btn btn-danger"
+        style="margin-left: 10px; margin-right: 10px"
+      >
+        Cancelar Producto
+      </button>
+    </div>
+
+    <!-- <div class="collapse" id="#collapseExample">
             <hr>
             <div class="accordion-body">
               Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
             </div>
         </div> -->
-    </div>    
-    <hr>
+  </div>
+  <hr />
 </div>

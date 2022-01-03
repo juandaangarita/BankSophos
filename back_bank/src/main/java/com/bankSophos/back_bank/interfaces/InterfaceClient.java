@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface InterfaceClient extends JpaRepository<Client, Integer> {
 
+    Client findById(int id);
+
 }

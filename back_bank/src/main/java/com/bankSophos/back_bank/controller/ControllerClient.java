@@ -2,6 +2,7 @@ package com.bankSophos.back_bank.controller;
 
 import com.bankSophos.back_bank.interfaceService.InterfaceClientService;
 import com.bankSophos.back_bank.model.Client;
+import com.bankSophos.back_bank.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,10 +30,10 @@ public class ControllerClient {
         return service.add(c);
     }
 
-    //List just one client by Id
+    //List just one client by its Id
     @GetMapping("/{id}")
-    public Optional<Client> listId(@PathVariable("id") int id){
-        return service.listId(id);
+    public Client listIdOneClient(@PathVariable("id") int id){
+        return service.listIdOneClient(id);
     }
 
     //Edit client info of the id selected
