@@ -11,4 +11,6 @@ import java.util.Optional;
 public interface InterfaceProduct extends JpaRepository<Product, Integer> {
 
     List<Product> findByIdClient(int idClient);
+
+    Product findByIdProduct(int idProduct);
 }

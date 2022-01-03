@@ -28,8 +28,13 @@ export class ListProductComponent implements OnInit {
     })
   }
 
-  AddProduct(): void{
-    this.router.navigate(["/products/add"]);
+  AddProduct(id: any): void{
+    this.route.paramMap.subscribe(params=> {
+      if (params.has("id")){        
+        this.router.navigate(["clients/",params.get("id"),"products","add"]);
+      }
+    })
+    
   }
 
 }

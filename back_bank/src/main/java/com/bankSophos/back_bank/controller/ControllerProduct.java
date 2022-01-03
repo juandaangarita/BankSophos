@@ -23,7 +23,7 @@ public class ControllerProduct {
     }
 
     //Create a new product for a cliente
-    @PostMapping("/addProduct")
+    @PostMapping("")
     @ResponseBody
     public Product save(@RequestBody Product product, @PathVariable("idClient") int idClient){
         product.setIdClient(idClient);
@@ -32,46 +32,67 @@ public class ControllerProduct {
 
     //Get one product of a client
     @GetMapping("/{idProduct}")
-    public Optional<Product> ListIdOneProduct(@PathVariable("idClient")int idClient, @PathVariable("idProduct") int idProduct){
-        return serviceProduct.listIdOneProduct(idClient, idProduct);
+    public Product ListIdOneProduct(@PathVariable("idProduct") int idProduct){
+        return serviceProduct.listIdOneProduct(idProduct);
     }
 
     //Change status to active or inactive
     @PutMapping("/{idProduct}/changeStatus")
-    public Product changeStatus(Product product, @PathVariable("idProduct") int idProduct, @PathVariable("idClient") int idClient){
+    public Product changeStatus(Product product,@PathVariable("idProduct") int idProduct){
+        product = ListIdOneProduct(idProduct);
         product.setIdProduct(idProduct);
         product.setIdClient(product.getIdClient());
         product.setTypeAccount(product.getTypeAccount());
         product.setNumberAccount(product.getNumberAccount());
         product.setCreationDate(product.getCreationDate());
         product.setBalance(product.getBalance());
-        if(product.getState().equals("inactiva")){
-            product.setState("activa");
-        }
-        else {
+        if (product.getState().equals("activa"))
+        {
             product.setState("inactiva");
         }
-        return serviceProduct.changeStatus(product, idClient);
-    }
-
-    //Get one product of a client
-    @GetMapping("/{idProduct}/cancel")
-    public Optional<Product> ListIdOneProduct2(@PathVariable("idClient")int idClient, @PathVariable("idProduct") int idProduct){
-        return serviceProduct.listIdOneProduct(idClient, idProduct);
-    }
-
-    //Change status to cancel
-    @PutMapping("/{idProduct}/cancel")
-    public Product cancelProduct(Product product, @PathVariable("idProduct") int idProduct, @PathVariable("idClient") int idClient){
-        if (product.getBalance()==0){
-            product.setIdProduct(idProduct);
+        else if (product.getState().equals("inactiva"))
+        {
+            product.setState("activa");
+        }
+        else if (product.getState().equals("Cancelado"))
+        {
             product.setState("Cancelado");
         }
-        else{
-            System.out.println("El producto no puede ser cancelado ya que aun dispone de saldo, puede realizar el cambio a inactivo si así lo desea");
-        }
-        return serviceProduct.cancelProduct(product, idClient);
+        return serviceProduct.changeStatus(product);
     }
+
+    //Change status to active or inactive
+    @PutMapping("/{idProduct}/cancel")
+    public Product cancelProduct(Product product,@PathVariable("idProduct") int idProduct){
+        product = ListIdOneProduct(idProduct);
+        product.setIdProduct(idProduct);
+        product.setIdClient(product.getIdClient());
+        product.setTypeAccount(product.getTypeAccount());
+        product.setNumberAccount(product.getNumberAccount());
+        product.setCreationDate(product.getCreationDate());
+        product.setBalance(product.getBalance());
+        if (product.getBalance()!=0)
+        {
+            product.setState(product.getState());
+        }
+        else{
+            product.setState("Cancelado");
+        }
+        return serviceProduct.changeStatus(product);
+    }
+
+//    //Change status to cancel
+//    @PutMapping("/{idProduct}/cancel")
+//    public Product cancelProduct(Product product, @PathVariable("idProduct") int idProduct, @PathVariable("idClient") int idClient){
+//        if (product.getBalance()==0){
+//            product.setIdProduct(idProduct);
+//            product.setState("Cancelado");
+//        }
+//        else{
+//            System.out.println("El producto no puede ser cancelado ya que aun dispone de saldo, puede realizar el cambio a inactivo si así lo desea");
+//        }
+//        return serviceProduct.cancelProduct(product, idClient);
+//    }
 
 
 }

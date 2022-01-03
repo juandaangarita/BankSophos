@@ -1,36 +1,69 @@
 <div class="container col-md-6">
-    <div class="card">
-        <div class="card-header">
-            <h3>Crear productos para el cliente</h3>
-        </div>
-        <div class="card-body">
-            <form class="row g-3 needs-validation" action="">
-                <div class="form-group col-md-4">
-                    <label for="typeAccount">Tipo producto</label>
-                    <select 
-                    id="typeAccount"                     
-                    class="form-select"                    
-                    name="typeAccount"
-                    [(ngModel)]="product.typeAccount"
-                    required>
-                        <option value="ahorros" selected>Cuenta ahorros</option>
-                        <option value="corriente">Cuenta corriente</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="numberAccount">Número de cuenta</label>
-                    <input 
-                    id="numberAccount" 
-                    type="text" 
-                    class="form-control" 
-                    placeholder="1234 5678 9012"
-                    name="numberAccount"
-                    [(ngModel)]="product.numberAccount"
-                    required>
-                </div>
-                <button (click)="saveProduct()" class="btn btn-success" type="submit">Guardar</button>
-            </form>
-            
-        </div>
+  <div class="card">
+    <div class="card-header">
+      <h3>Crear productos para el cliente</h3>
     </div>
+    <div class="card-body">
+      <form class="row g-3 needs-validation" action="">
+        <div class="form-group col-md-4">
+          <label for="typeAccount">Tipo producto</label>
+          <select
+            id="typeAccount"
+            class="form-select"
+            name="typeAccount"
+            [(ngModel)]="product.typeAccount"
+            required
+          >
+            <option value="ahorros" selected>Cuenta ahorros</option>
+            <option value="corriente">Cuenta corriente</option>
+          </select>
+        </div>
+        <div class="form-group col-md-8">
+          <label for="numberAccount">Número de cuenta</label>
+          <input
+            id="numberAccount"
+            type="text"
+            class="form-control"
+            placeholder="1234 5678 9012"
+            name="numberAccount"
+            [(ngModel)]="product.numberAccount"
+            required
+          />
+        </div>
+        <div
+          class="btn-holder"
+          style="justify-content: flex-end; display: flex; margin-bottom: 10px"
+        >
+          <button
+            (click)="saveProduct()"
+            class="btn btn-success"
+            style="
+              width: 25%;
+              margin-left: 10px;
+              text-align: center;
+              margin-bottom: 10px;
+              margin-top: 10px;
+            "
+            type="submit"
+          >
+            Guardar
+          </button>
+          <button
+            (click)="backProduct()"
+            class="btn btn-secondary"
+            style="
+              width: 25%;
+              margin-left: 10px;
+              text-align: center;
+              margin-bottom: 10px;
+              margin-top: 10px;
+            "
+            type="submit"
+          >
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

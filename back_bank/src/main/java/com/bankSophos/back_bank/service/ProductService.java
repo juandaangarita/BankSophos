@@ -20,10 +20,9 @@ public class ProductService implements InterfaceProductService {
         return dataProduct.findByIdClient(idClient);
     }
 
-
     @Override
-    public Optional<Product> listIdOneProduct(int idClient, int idProduct) {
-        return dataProduct.findById(idProduct);
+    public Product listIdOneProduct(int idProduct) {
+        return dataProduct.findByIdProduct(idProduct);
     }
 
     @Override
@@ -37,7 +36,7 @@ public class ProductService implements InterfaceProductService {
     }
 
     @Override
-    public Product changeStatus(Product product, int idClient) {
+    public Product changeStatus(Product product) {
         return dataProduct.save(product);
     }
 

@@ -8,15 +8,15 @@ import { ProductService } from 'src/app/Service/product.service';
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
-  styleUrls: ['./add-product.component.css']
+  styleUrls: ['./add-product.component.css'],
 })
 export class AddProductComponent implements OnInit {
   dateNow = new Date();
 
-  products?:Product[];
-  clients?:Client[];
+  products?: Product[];
+  clients?: Client[];
 
-  product: Product ={
+  product: Product = {
     typeAccount: '',
     numberAccount: '',
     creationDate: '',
@@ -25,35 +25,42 @@ export class AddProductComponent implements OnInit {
   };
   save = false;
 
-  constructor(private router:Router, private route: ActivatedRoute, private productService:ProductService) { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private productService: ProductService
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  saveProduct(): void{
-    
-
-    const data={
+  saveProduct(): void {
+    const data = {
       typeAccount: this.product.typeAccount,
       numberAccount: this.product.numberAccount,
-      creationDate: formatDate(this.dateNow, 'YYYY-MM-dd','en-US')
+      state: 'activa',
+      creationDate: formatDate(this.dateNow, 'YYYY-MM-dd', 'en-US'),
     };
 
-    this.route.paramMap.subscribe(params=> {
-      if (params.has("id")){
-        this.productService.getProduct(params.get("id")).subscribe(data =>this.products = data);
+    this.route.paramMap.subscribe((params) => {
+      if (params.has('id')) {
+        this.productService
+          .getProduct(params.get('id'))
+          .subscribe((data) => (this.products = data));
+        this.productService.createProduct(data, params.get('id')).subscribe({
+          next: () => {
+            alert('El producto fue creado con éxito');
+            this.router.navigate(['clients', params.get('id'), 'products']);
+          },
+          error: (e) => console.error(e),
+        });
       }
-    })
+    });
+  }
 
-    this.productService.createProduct(data)
-    .subscribe({
-      next: () => {          
-        alert("El producto fue creado con éxito");
-        this.router.navigate(["clients"])
-      },
-      error: (e) => console.error(e)
-    })
-    
-}
+  backProduct(): void {
+    this.route.paramMap.subscribe((params) => {
+      this.router.navigate(['clients', params.get('id'), 'products']);
+    });
 
+  }
 }

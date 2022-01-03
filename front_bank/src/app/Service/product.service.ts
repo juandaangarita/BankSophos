@@ -20,8 +20,9 @@ export class ProductService {
   }
 
   //Create a product for a client
-  createProduct(data: any): Observable<any>{
-    return this.http.post(this.UrlProduct,data);
+  createProduct(data: any, id: any): Observable<any>{
+    const url = `${this.UrlProduct}${id}/products`
+    return this.http.post(url,data);
   }
 
   // //List only one product of the client
@@ -30,8 +31,9 @@ export class ProductService {
   // }
 
   //This is not usefull now
-  updateStatusProduct(id: any, data: any): Observable<any>{
-    return this.http.put(`${this.UrlProduct}?clientId=${id}`, data);
+  updateStatusProduct(id: any, idProduct: any, data: any): Observable<any>{
+    const url = `${this.UrlProduct}${id}/products/${idProduct}/changeStatus`
+    return this.http.put(url, data);
   }
 
 }
