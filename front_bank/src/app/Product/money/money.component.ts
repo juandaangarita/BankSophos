@@ -35,12 +35,11 @@ export class MoneyComponent implements OnInit {
   }
 
   addMoneytoProduct(idClient: any, idProduct: any, money: any): void {    
-
     this.route.paramMap.subscribe((params) => {
       this.productService.addMoney(params.get('id'),params.get('idProduct'), this.currentProduct.balance, this.currentProduct)
       .subscribe({
         next: () => {
-          alert('consignación realizada');
+          alert('Consignación realizada');
           this.router.navigate(['clients', params.get('id'), 'products']);
         },
         error: (e) => console.error(e),
@@ -49,7 +48,6 @@ export class MoneyComponent implements OnInit {
   }
 
   withdrawMoneytoProduct(idClient: any, idProduct: any, money: any): void {  
-
     this.route.paramMap.subscribe((params) => {
       this.productService.withdrawMoney(params.get('id'),params.get('idProduct'), this.currentProduct.balance, this.currentProduct)
       .subscribe({

@@ -13,24 +13,24 @@ public class Transaction {
     private int idSecondaryClient;
     @JoinColumn(name = "idProduct")
     private int idPrincipalProduct;
-    private int IdSecondaryProduct;
+    private int idSecondaryProduct;
     private String typeOperation;
     private int valueOperation;
     private String dateOperation;
     private String description;
     private String resultOperation;
-    private String finalBalance;
+    private int finalBalance;
     private int GMF;
 
     public Transaction() {
     }
 
-    public Transaction(int idTransaction, int idPrincipalClient, int idSecondaryClient, int idPrincipalProduct, int idSecondaryProduct, String typeOperation, int valueOperation, String dateOperation, String description, String resultOperation, String finalBalance, int GMF) {
+    public Transaction(int idTransaction, int idPrincipalClient, int idSecondaryClient, int idPrincipalProduct, int idSecondaryProduct, String typeOperation, int valueOperation, String dateOperation, String description, String resultOperation, int finalBalance, int GMF) {
         this.idTransaction = idTransaction;
         this.idPrincipalClient = idPrincipalClient;
         this.idSecondaryClient = idSecondaryClient;
         this.idPrincipalProduct = idPrincipalProduct;
-        IdSecondaryProduct = idSecondaryProduct;
+        this.idSecondaryProduct = idSecondaryProduct;
         this.typeOperation = typeOperation;
         this.valueOperation = valueOperation;
         this.dateOperation = dateOperation;
@@ -73,11 +73,11 @@ public class Transaction {
     }
 
     public int getIdSecondaryProduct() {
-        return IdSecondaryProduct;
+        return idSecondaryProduct;
     }
 
     public void setIdSecondaryProduct(int idSecondaryProduct) {
-        IdSecondaryProduct = idSecondaryProduct;
+        this.idSecondaryProduct = idSecondaryProduct;
     }
 
     public String getTypeOperation() {
@@ -120,11 +120,11 @@ public class Transaction {
         this.resultOperation = resultOperation;
     }
 
-    public String getFinalBalance() {
+    public int getFinalBalance() {
         return finalBalance;
     }
 
-    public void setFinalBalance(String finalBalance) {
+    public void setFinalBalance(int finalBalance) {
         this.finalBalance = finalBalance;
     }
 

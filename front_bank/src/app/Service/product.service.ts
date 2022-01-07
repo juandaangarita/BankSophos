@@ -48,14 +48,14 @@ export class ProductService {
     return this.http.put(url, data);
   }
 
-  //WithdawMoney
+  //WithdrawMoney
   withdrawMoney(
     id: any,
     idProduct: any,
     money: any,
     data: any
   ): Observable<any> {
-    const url = `${this.UrlProduct}${id}/products/${idProduct}/-${money}`;
+    const url = `${this.UrlProduct}${id}/products/${idProduct}/${money}/withdraw`;
     return this.http.put(url, data);
   }
 }
