@@ -1,13 +1,13 @@
 package com.bankSophos.back_bank.controller;
 
 import com.bankSophos.back_bank.interfaceService.InterfaceClientService;
+import com.bankSophos.back_bank.interfaceService.InterfaceProductService;
 import com.bankSophos.back_bank.model.Client;
 import com.bankSophos.back_bank.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -16,6 +16,9 @@ public class ControllerClient {
 
     @Autowired
     InterfaceClientService service;
+
+    @Autowired
+    InterfaceProductService serviceProduct;
 
     //Listing all the clients
     @GetMapping("")
@@ -46,7 +49,20 @@ public class ControllerClient {
     //Delete a client info
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") int id){
-        service.delete(id);
+        List<Product> product = serviceProduct.listIdProduct(id);
+        int count_state = 0;
+        for (Product model: product){
+            if (model.getState().equals("activa") || model.getState().equals("inactiva")){
+                count_state ++;
+            }
+        }
+        if (count_state > 0){
+            System.out.println("Productos activos o inactivos");
+        }
+        else {
+            System.out.println("Todos productos cancelados");
+            service.delete(id);
+        }
     }
 
 

@@ -53,6 +53,8 @@ export class ListProductComponent implements OnInit {
       next: (res) => {
         alert("El estado del producto fue actualizado con éxito");
         this.route.paramMap.subscribe(params=> {
+        this.productService.getProduct(params.get("id")).subscribe(data =>this.products = data);})
+        this.route.paramMap.subscribe(params=> {
         this.router.navigate(["clients/",params.get("id"),"products"]);})
       },
       error: (e) => console.error(e)
@@ -69,7 +71,10 @@ export class ListProductComponent implements OnInit {
     this.productService.cancelStatusProduct(idClient, idProduct, this.currentProduct)
     .subscribe({
       next: (res) => {
-        alert("El estado del producto fue actualizado con éxito");
+
+        alert("Actualización realizada. Si su saldo no es igual a cero su producto no podrá ser cancelado");
+        this.route.paramMap.subscribe(params=> {
+          this.productService.getProduct(params.get("id")).subscribe(data =>this.products = data);})
         this.route.paramMap.subscribe(params=> {
           this.router.navigate(["clients/",params.get("id"),"products"]);
           this.router.routeReuseStrategy.shouldReuseRoute = function() { return false; };

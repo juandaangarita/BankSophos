@@ -62,7 +62,6 @@ export class EditClientComponent implements OnInit {
     this.clientService.deleteClient(this.currentClient.id)
     .subscribe({
       next: (res) => {
-        alert("El cliente fue borrado con éxito de la base de datos. Será redirigido a la página de gestión de clientes");
         this.router.navigate(['/clients']);
       },
       error: (e) => console.error(e)

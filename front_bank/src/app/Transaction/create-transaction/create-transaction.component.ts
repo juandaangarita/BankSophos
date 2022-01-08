@@ -49,7 +49,7 @@ export class CreateTransactionComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
         this.transactionService.createTransaction(data, params.get('id'), params.get('idProduct')).subscribe({
           next: () => {
-            alert('Transacción realizada');
+            alert(this.transaction.resultOperation);
             this.router.navigate(['clients', params.get('id'), 'products',params.get('idProduct'),'transactions']);
           },
           error: (e) => console.error(e),

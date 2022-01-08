@@ -45,6 +45,11 @@ public class ProductService implements InterfaceProductService {
     }
 
     @Override
+    public List<Product> listIdOtherAvailableProducts(int idClient, int idProduct) {
+        return dataProduct.findByStateNotAndIdClientNotAndIdProductNot("Cancelado", idClient, idProduct);
+    }
+
+    @Override
     public Product cancelProduct(Product product) {
         return dataProduct.save(product);
     }

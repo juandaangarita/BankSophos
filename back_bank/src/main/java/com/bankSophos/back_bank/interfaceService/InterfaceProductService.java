@@ -10,6 +10,7 @@ public interface InterfaceProductService {
     public Product addProduct(Product product, int idClient);
     public Product changeStatus(Product product);
     public Product updateBalance(Product product);
+    public List<Product> listIdOtherAvailableProducts(int idClient, int idProduct);
     public Product cancelProduct(Product product);
     public Product addToBalance(Product product, int movement);
     public Product withdrawToBalance(Product product, int movement);

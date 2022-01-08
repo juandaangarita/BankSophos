@@ -28,6 +28,13 @@ public class ControllerProduct {
         return serviceProduct.listIdProduct(idClient);
     }
 
+    //List of products different to the selected one
+    @GetMapping("/{idProduct}/different")
+    public List<Product> listIdOtherAvailableProducts(@PathVariable("idClient") int idClient, @PathVariable("idProduct") int idProduct){
+        return serviceProduct.listIdOtherAvailableProducts(idClient,idProduct);
+    }
+
+
     //Create a new product for a cliente
     @PostMapping("")
     @ResponseBody
