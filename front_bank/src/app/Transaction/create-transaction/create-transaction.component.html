@@ -1,0 +1,126 @@
+<div class="container col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <h3>Realizar movimientos</h3>
+      </div>
+      <div class="card-body">
+        <form class="row g-3 needs-validation" action="">
+            <div class="form-group col-md-8 col-form-label-sm">
+                <label for="typeOperation">Tipo de movimiento</label>
+                <select
+                  id="typeOperation"
+                  class="form-select"
+                  name="typeOperation"
+                  [(ngModel)]="transaction.typeOperation"
+                  required
+                >
+                  <option value="Retiro" selected>Retiro</option>
+                  <option value="Consignación">Consignación</option>
+                  <option value="Transferencia">Transferencia</option>
+                </select>
+              </div>
+
+          <div class="form-group col-md-8">
+            <label for="valueOperation">Cantidad de dinero</label>
+            <input
+              id="valueOperation"
+              type="number"
+              class="form-control"
+              placeholder="123456789012"
+              name="valueOperation"
+              min=0
+              value="0"
+              [(ngModel)]="transaction.valueOperation"
+              required
+            />
+          </div>
+          <div class="form-group col-md-8">
+            <label for="description">Descripción </label>
+            <input
+              id="description"
+              type="text"
+              class="form-control"
+              placeholder="Ej: Retiro para almuerzo"
+              name="description"
+              [(ngModel)]="transaction.description"
+              required
+            />
+          </div>
+          <p>
+            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample/clients/1/products/1/transaction" role="button" aria-expanded="false" aria-controls="collapseExample">
+              Link with href
+            </a>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              Button with data-bs-target
+            </button>
+          </p>
+          <div class="collapse" id="collapseExample">
+
+          <div class="form-group col-md-8 col-form-label-sm">
+            <label for="typeOperation">Tipo de movimiento</label>
+            <select
+              id="typeOperation"
+              class="form-select"
+              name="typeOperation"
+              [(ngModel)]="transaction.idSecondaryProduct"
+              required
+            >
+              <option value="Retiro" selected>Retiro</option>
+              <option value="Consignación">Consignación</option>
+              <option value="Transferencia">Transferencia</option>
+            </select>
+          </div>
+          <div class="form-group col-md-8 col-form-label-sm">
+            <label for="typeOperation">Tipo de movimiento</label>
+            <select
+              id="typeOperation"
+              class="form-select"
+              name="typeOperation"
+              [(ngModel)]="transaction.idSecondaryClient"
+              required
+            >
+              <option value="Retiro" selected>Retiro</option>
+              <option value="Consignación">Consignación</option>
+              <option value="Transferencia">Transferencia</option>
+            </select>
+          </div>
+        </div>
+
+
+          <div              
+            class="btn-holder"
+            style="justify-content: flex-end; display: flex; margin-bottom: 10px"
+          >
+            <button
+              class="btn btn-success"
+              style="
+                width: 25%;
+                margin-left: 10px;
+                text-align: center;
+                margin-bottom: 10px;
+                margin-top: 10px;
+              "
+              type="submit"
+            >
+              Confirmar
+            </button>
+            <button
+              (click)="backProduct()"
+              class="btn btn-secondary"
+              style="
+                width: 25%;
+                margin-left: 10px;
+                text-align: center;
+                margin-bottom: 10px;
+                margin-top: 10px;
+              "
+              type="submit"
+            >
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

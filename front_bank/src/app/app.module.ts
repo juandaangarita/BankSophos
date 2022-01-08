@@ -16,6 +16,8 @@ import { AddProductComponent } from './Product/add-product/add-product.component
 import { DeleteProductComponent } from './Product/delete-product/delete-product.component';
 import { RouterModule } from '@angular/router';
 import { MoneyComponent } from './Product/money/money.component';
+import { ListTransactionComponent } from './Transaction/list-transaction/list-transaction.component';
+import { CreateTransactionComponent } from './Transaction/create-transaction/create-transaction.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { MoneyComponent } from './Product/money/money.component';
     ListProductComponent,
     AddProductComponent,
     DeleteProductComponent,
-    MoneyComponent
+    MoneyComponent,
+    ListTransactionComponent,
+    CreateTransactionComponent
   ],
   imports: [
     BrowserModule,

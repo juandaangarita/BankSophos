@@ -22,7 +22,6 @@ export class AddClientComponent implements OnInit {
     telephone: '',
     dateCreation: '',
   };
-  save = false;
   
 
   constructor(private router:Router, private clientService:ClientService) { }

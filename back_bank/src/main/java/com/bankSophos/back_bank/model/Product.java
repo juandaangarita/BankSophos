@@ -14,12 +14,12 @@ public class Product {
     private String numberAccount;
     private String creationDate;
     private String state;
-    private int balance;
+    private double balance;
 
     public Product() {
     }
 
-    public Product(int idProduct, int idClient, String typeAccount, String numberAccount, String creationDate, String state, int balance) {
+    public Product(int idProduct, int idClient, String typeAccount, String numberAccount, String creationDate, String state, double balance) {
         this.idProduct = idProduct;
         this.idClient = idClient;
         this.typeAccount = typeAccount;
@@ -77,11 +77,11 @@ public class Product {
         this.state = state;
     }
 
-    public int getBalance() {
+    public double getBalance() {
         return balance;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
     }
 }

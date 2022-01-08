@@ -15,17 +15,18 @@ public class Transaction {
     private int idPrincipalProduct;
     private int idSecondaryProduct;
     private String typeOperation;
-    private int valueOperation;
+    private double valueOperation;
     private String dateOperation;
     private String description;
     private String resultOperation;
-    private int finalBalance;
-    private int GMF;
+    private double finalBalance;
+    private double GMF;
+    private String financeMovement;
 
     public Transaction() {
     }
 
-    public Transaction(int idTransaction, int idPrincipalClient, int idSecondaryClient, int idPrincipalProduct, int idSecondaryProduct, String typeOperation, int valueOperation, String dateOperation, String description, String resultOperation, int finalBalance, int GMF) {
+    public Transaction(int idTransaction, int idPrincipalClient, int idSecondaryClient, int idPrincipalProduct, int idSecondaryProduct, String typeOperation, double valueOperation, String dateOperation, String description, String resultOperation, double finalBalance, double GMF, String financeMovement) {
         this.idTransaction = idTransaction;
         this.idPrincipalClient = idPrincipalClient;
         this.idSecondaryClient = idSecondaryClient;
@@ -38,6 +39,7 @@ public class Transaction {
         this.resultOperation = resultOperation;
         this.finalBalance = finalBalance;
         this.GMF = GMF;
+        this.financeMovement = financeMovement;
     }
 
     public int getIdTransaction() {
@@ -88,11 +90,11 @@ public class Transaction {
         this.typeOperation = typeOperation;
     }
 
-    public int getValueOperation() {
+    public double getValueOperation() {
         return valueOperation;
     }
 
-    public void setValueOperation(int valueOperation) {
+    public void setValueOperation(double valueOperation) {
         this.valueOperation = valueOperation;
     }
 
@@ -120,20 +122,28 @@ public class Transaction {
         this.resultOperation = resultOperation;
     }
 
-    public int getFinalBalance() {
+    public double getFinalBalance() {
         return finalBalance;
     }
 
-    public void setFinalBalance(int finalBalance) {
+    public void setFinalBalance(double finalBalance) {
         this.finalBalance = finalBalance;
     }
 
-    public int getGMF() {
+    public double getGMF() {
         return GMF;
     }
 
-    public void setGMF(int GMF) {
+    public void setGMF(double GMF) {
         this.GMF = GMF;
+    }
+
+    public String getFinanceMovement() {
+        return financeMovement;
+    }
+
+    public void setFinanceMovement(String financeMovement) {
+        this.financeMovement = financeMovement;
     }
 }
 

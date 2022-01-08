@@ -7,6 +7,9 @@ import { ListClientComponent } from './Client/list-client/list-client.component'
 import { LandingComponent } from './Landing/landing/landing.component';
 import { AddProductComponent } from './Product/add-product/add-product.component';
 import { MoneyComponent } from './Product/money/money.component';
+import { ListTransactionComponent } from './Transaction/list-transaction/list-transaction.component';
+import { CreateTransactionComponent } from './Transaction/create-transaction/create-transaction.component';
+
 
 const routes: Routes = [
   {path:'', component:LandingComponent},
@@ -22,6 +25,10 @@ const routes: Routes = [
   {path:'clients/:id/products/add', component:AddProductComponent},
   //To make movement of money
   {path:'clients/:id/products/:idProduct/money', component:MoneyComponent},
+  //To list all the transaction of a product
+  {path:'clients/:id/products/:idProduct/transactions', component:ListTransactionComponent},
+  //To create a transaction
+  {path:'clients/:id/products/:idProduct/transaction', component:CreateTransactionComponent},
 ];
 
 @NgModule({

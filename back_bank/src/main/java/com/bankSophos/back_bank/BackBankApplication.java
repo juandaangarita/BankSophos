@@ -18,33 +18,43 @@ public class BackBankApplication {
 	}
 
 	@Bean
-	public WebMvcConfigurer corsConfigurerClients() {
+	public WebMvcConfigurer corsConfigurerAll() {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/clients").allowedOrigins("http://localhost:4200");
+				registry.addMapping("/**").allowedOrigins("http://localhost:4200");
 			}
 		};
 	}
 
-	@Bean
-	public WebMvcConfigurer corsConfigurerProducts() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/products").allowedOrigins("http://localhost:4200");
-			}
-		};
-	}
-
-	@Bean
-	public WebMvcConfigurer corsConfigurerTransactions() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/transaction").allowedOrigins("http://localhost:4200");
-			}
-		};
-	}
+//	@Bean
+//	public WebMvcConfigurer corsConfigurerClients() {
+//		return new WebMvcConfigurer() {
+//			@Override
+//			public void addCorsMappings(CorsRegistry registry) {
+//				registry.addMapping("/clients").allowedOrigins("http://localhost:4200");
+//			}
+//		};
+//	}
+//
+//	@Bean
+//	public WebMvcConfigurer corsConfigurerProducts() {
+//		return new WebMvcConfigurer() {
+//			@Override
+//			public void addCorsMappings(CorsRegistry registry) {
+//				registry.addMapping("/products").allowedOrigins("http://localhost:4200");
+//			}
+//		};
+//	}
+//
+//	@Bean
+//	public WebMvcConfigurer corsConfigurerTransactions() {
+//		return new WebMvcConfigurer() {
+//			@Override
+//			public void addCorsMappings(CorsRegistry registry) {
+//				registry.addMapping("/transaction").allowedOrigins("http://localhost:4200");
+//			}
+//		};
+//	}
 
 }

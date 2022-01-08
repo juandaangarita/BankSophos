@@ -38,7 +38,12 @@ export class ListProductComponent implements OnInit {
   }
 
   addMovementMoney(idClient:any, idProduct:any): void{
-    this.router.navigate(["clients/",idClient,"products",idProduct,"money"])
+    this.router.navigate(["clients/",idClient,"products",idProduct,"transaction"])
+    
+  }
+
+  accountStatus(idClient:any, idProduct:any): void{
+    this.router.navigate(["clients/",idClient,"products",idProduct,"transactions"])
     
   }
 
