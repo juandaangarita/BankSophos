@@ -25,6 +25,8 @@ export class CreateTransactionComponent implements OnInit {
     financeMovement:'',
   };
 
+  public isCollapsed = true;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -42,7 +44,17 @@ export class CreateTransactionComponent implements OnInit {
       valueOperation:this.transaction.valueOperation ,
       dateOperation: formatDate(this.dateNow, 'YYYY-MM-dd', 'en-US'),
       description:this.transaction.description,
-    }
+    };
+
+    this.route.paramMap.subscribe((params) => {
+        this.transactionService.createTransaction(data, params.get('id'), params.get('idProduct')).subscribe({
+          next: () => {
+            alert('Transacción realizada');
+            this.router.navigate(['clients', params.get('id'), 'products',params.get('idProduct'),'transactions']);
+          },
+          error: (e) => console.error(e),
+        });
+      });
   }
 
   backProduct(): void {

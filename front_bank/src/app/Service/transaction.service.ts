@@ -17,4 +17,10 @@ export class TransactionService {
     const url = `${this.UrlTransaction}${id}/products/${idProduct}/transaction`
     return this.http.get<Transaction[]>(url);
   }
+
+    //Create a transaction for a product
+    createTransaction(data: any, id: any, idProduct:any): Observable<any> {
+      const url = `${this.UrlTransaction}${id}/products/${idProduct}/transaction`;
+      return this.http.post(url, data);
+    }
 }

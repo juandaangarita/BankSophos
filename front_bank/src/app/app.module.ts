@@ -18,7 +18,7 @@ import { RouterModule } from '@angular/router';
 import { MoneyComponent } from './Product/money/money.component';
 import { ListTransactionComponent } from './Transaction/list-transaction/list-transaction.component';
 import { CreateTransactionComponent } from './Transaction/create-transaction/create-transaction.component';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,8 @@ import { CreateTransactionComponent } from './Transaction/create-transaction/cre
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [ClientService],
   bootstrap: [AppComponent]
