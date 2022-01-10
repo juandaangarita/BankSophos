@@ -8,9 +8,6 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTransaction;
-    @JoinColumn(name = "id")
-    private int idPrincipalClient;
-    private int idSecondaryClient;
     @JoinColumn(name = "idProduct")
     private int idPrincipalProduct;
     private int idSecondaryProduct;
@@ -26,10 +23,8 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction(int idTransaction, int idPrincipalClient, int idSecondaryClient, int idPrincipalProduct, int idSecondaryProduct, String typeOperation, double valueOperation, String dateOperation, String description, String resultOperation, double finalBalance, double GMF, String financeMovement) {
+    public Transaction(int idTransaction, int idPrincipalProduct, int idSecondaryProduct, String typeOperation, double valueOperation, String dateOperation, String description, String resultOperation, double finalBalance, double GMF, String financeMovement) {
         this.idTransaction = idTransaction;
-        this.idPrincipalClient = idPrincipalClient;
-        this.idSecondaryClient = idSecondaryClient;
         this.idPrincipalProduct = idPrincipalProduct;
         this.idSecondaryProduct = idSecondaryProduct;
         this.typeOperation = typeOperation;
@@ -48,22 +43,6 @@ public class Transaction {
 
     public void setIdTransaction(int idTransaction) {
         this.idTransaction = idTransaction;
-    }
-
-    public int getIdPrincipalClient() {
-        return idPrincipalClient;
-    }
-
-    public void setIdPrincipalClient(int idPrincipalClient) {
-        this.idPrincipalClient = idPrincipalClient;
-    }
-
-    public int getIdSecondaryClient() {
-        return idSecondaryClient;
-    }
-
-    public void setIdSecondaryClient(int idSecondaryClient) {
-        this.idSecondaryClient = idSecondaryClient;
     }
 
     public int getIdPrincipalProduct() {

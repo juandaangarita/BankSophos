@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface InterfaceTransaction extends JpaRepository<Transaction, Integer> {
 
-    List<Transaction> findByIdPrincipalClientAndIdPrincipalProductAndResultOperation(int idPrincipalClient, int idPrincipalProduct, String resultOperation);
+    List<Transaction> findByIdPrincipalProductAndResultOperation(int idPrincipalProduct, String resultOperation);
 
 }

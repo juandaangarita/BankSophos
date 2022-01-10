@@ -15,13 +15,13 @@ public class TransactionService implements InterfaceTransactionService {
     private InterfaceTransaction dataTransaction;
 
     @Override
-    public Transaction createTransaction(Transaction transaction, int idPrincipalClient, int idPrincipalProduct) {
+    public Transaction createTransaction(Transaction transaction, int idPrincipalProduct) {
         return dataTransaction.save(transaction);
     }
 
     @Override
-    public List<Transaction> listIdTransaction(int idPrincipalClient, int idPrincipalProduct) {
-        return dataTransaction.findByIdPrincipalClientAndIdPrincipalProductAndResultOperation(idPrincipalClient, idPrincipalProduct, "Efectiva");
+    public List<Transaction> listIdTransaction(int idPrincipalProduct) {
+        return dataTransaction.findByIdPrincipalProductAndResultOperation(idPrincipalProduct, "Efectiva");
     }
 
 

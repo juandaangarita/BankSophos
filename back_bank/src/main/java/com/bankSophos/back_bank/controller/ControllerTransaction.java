@@ -23,9 +23,8 @@ public class ControllerTransaction {
     //Create a transaction
     @PostMapping("")
     @ResponseBody
-    public Transaction saveTransaction(@RequestBody Transaction transaction, @PathVariable("idClient") int idClient, @PathVariable("idProduct") int idProduct){
+    public Transaction saveTransaction(@RequestBody Transaction transaction, @PathVariable("idProduct") int idProduct){
         Product product = serviceProduct.listIdOneProduct(idProduct);
-        transaction.setIdPrincipalClient(idClient);
         transaction.setIdPrincipalProduct(idProduct);
         if (product.getState().equals("Cancelado")){
             transaction.setResultOperation("Producto cancelado");
@@ -39,7 +38,6 @@ public class ControllerTransaction {
             if (product.getTypeAccount().equals("ahorros") && product.getBalance() - (1.004 * transaction.getValueOperation()) >= 0){
                 //Creation of the GMF transaction
                 Transaction transactionGMF = new Transaction();
-                transactionGMF.setIdPrincipalClient(idClient);
                 transactionGMF.setIdPrincipalProduct(idProduct);
                 transactionGMF.setValueOperation(-0.004 * transaction.getValueOperation());
                 transactionGMF.setFinalBalance(product.getBalance() - 0.004 * transaction.getValueOperation());
@@ -48,11 +46,10 @@ public class ControllerTransaction {
                 transactionGMF.setDateOperation(transaction.getDateOperation());
                 transactionGMF.setTypeOperation("GMF");
                 transactionGMF.setFinanceMovement("Débito");
-                serviceTransaction.createTransaction(transactionGMF, idClient, idProduct);
+                serviceTransaction.createTransaction(transactionGMF, idProduct);
                 //Updating the transaction
                 transaction.setFinalBalance(product.getBalance() - (1.004 * transaction.getValueOperation()));
                 transaction.setValueOperation(-transaction.getValueOperation());
-                transaction.setIdSecondaryClient(0);
                 transaction.setIdSecondaryProduct(0);
                 transaction.setResultOperation("Efectiva");
                 transaction.setFinanceMovement("Débito");
@@ -61,7 +58,6 @@ public class ControllerTransaction {
             else if (product.getTypeAccount().equals("corriente") && product.getBalance() - (1.004 * transaction.getValueOperation()) >= -2000000){
                 //Creation of the GMF transaction
                 Transaction transactionGMF = new Transaction();
-                transactionGMF.setIdPrincipalClient(idClient);
                 transactionGMF.setIdPrincipalProduct(idProduct);
                 transactionGMF.setValueOperation(-0.004 * transaction.getValueOperation());
                 transactionGMF.setFinalBalance(product.getBalance() - 0.004 * transaction.getValueOperation());
@@ -70,11 +66,10 @@ public class ControllerTransaction {
                 transactionGMF.setDateOperation(transaction.getDateOperation());
                 transactionGMF.setTypeOperation("GMF");
                 transactionGMF.setFinanceMovement("Débito");
-                serviceTransaction.createTransaction(transactionGMF, idClient, idProduct);
+                serviceTransaction.createTransaction(transactionGMF, idProduct);
                 //Updating the transaction
                 transaction.setFinalBalance(product.getBalance() - (1.004 * transaction.getValueOperation()));
                 transaction.setValueOperation(-transaction.getValueOperation());
-                transaction.setIdSecondaryClient(0);
                 transaction.setIdSecondaryProduct(0);
                 transaction.setResultOperation("Efectiva");
                 transaction.setFinanceMovement("Débito");
@@ -86,14 +81,14 @@ public class ControllerTransaction {
             }
         }
         else if(transaction.getTypeOperation().equals("Transferencia") && product.getState().equals("activa")){
+            System.out.println(transaction.getIdSecondaryProduct());
+            System.out.println(transaction.getTypeOperation());
             Product productReception = serviceProduct.listIdOneProduct(transaction.getIdSecondaryProduct());
             if (product.getTypeAccount().equals("ahorros") && product.getBalance() - (1.004 * transaction.getValueOperation()) >= 0) {
-                transaction.setIdSecondaryClient(transaction.getIdSecondaryClient());
                 transaction.setIdSecondaryProduct(transaction.getIdSecondaryProduct());
 
                 //Creation of the GMF transaction
                 Transaction transactionGMF = new Transaction();
-                transactionGMF.setIdPrincipalClient(idClient);
                 transactionGMF.setIdPrincipalProduct(idProduct);
                 transactionGMF.setValueOperation(-0.004 * transaction.getValueOperation());
                 transactionGMF.setFinalBalance(product.getBalance() - 0.004 * transaction.getValueOperation());
@@ -102,7 +97,7 @@ public class ControllerTransaction {
                 transactionGMF.setDateOperation(transaction.getDateOperation());
                 transactionGMF.setTypeOperation("GMF");
                 transactionGMF.setFinanceMovement("Débito");
-                serviceTransaction.createTransaction(transactionGMF, idClient, idProduct);
+                serviceTransaction.createTransaction(transactionGMF, idProduct);
                 //Updating the transaction
                 transaction.setFinalBalance(product.getBalance() - (1.004 * transaction.getValueOperation()));
                 transaction.setValueOperation(-transaction.getValueOperation());
@@ -111,29 +106,25 @@ public class ControllerTransaction {
                 transaction.setGMF(-0.004 * transaction.getValueOperation());
                 //Creation of the Receiving transaction
                 Transaction transactionReception = new Transaction();
-                transactionReception.setIdPrincipalClient(transaction.getIdSecondaryClient());
                 transactionReception.setIdPrincipalProduct(transaction.getIdSecondaryProduct());
                 transactionReception.setValueOperation(-transaction.getValueOperation());
                 transactionReception.setFinalBalance(productReception.getBalance() - transaction.getValueOperation());
-                transactionReception.setDescription("Recepción transferencia " + transaction.getDescription() + " desde producto: " + transaction.getIdPrincipalClient());
+                transactionReception.setDescription("Recepción transferencia " + transaction.getDescription() + " desde producto: " + transaction.getIdPrincipalProduct());
                 transactionReception.setResultOperation("Efectiva");
                 transactionReception.setDateOperation(transaction.getDateOperation());
                 transactionReception.setTypeOperation("Recepción por transferencia");
-                transactionReception.setIdSecondaryClient(transaction.getIdPrincipalClient());
                 transactionReception.setIdSecondaryProduct(transaction.getIdPrincipalProduct());
                 transactionReception.setFinanceMovement("Crédito");
-                serviceTransaction.createTransaction(transactionReception, transaction.getIdSecondaryClient(), transaction.getIdSecondaryProduct());
+                serviceTransaction.createTransaction(transactionReception, transaction.getIdSecondaryProduct());
                 //Updating balance in receiving product
                 productReception.setBalance(transactionReception.getFinalBalance());
                 serviceProduct.updateBalance(productReception);
             }
             else if (product.getTypeAccount().equals("corriente") && product.getBalance() - (1.004 * transaction.getValueOperation()) >= -2000000){
-                transaction.setIdSecondaryClient(transaction.getIdSecondaryClient());
                 transaction.setIdSecondaryProduct(transaction.getIdSecondaryProduct());
 
                 //Creation of the GMF transaction
                 Transaction transactionGMF = new Transaction();
-                transactionGMF.setIdPrincipalClient(idClient);
                 transactionGMF.setIdPrincipalProduct(idProduct);
                 transactionGMF.setValueOperation(-0.004 * transaction.getValueOperation());
                 transactionGMF.setFinalBalance(product.getBalance() - 0.004 * transaction.getValueOperation());
@@ -142,7 +133,7 @@ public class ControllerTransaction {
                 transactionGMF.setDateOperation(transaction.getDateOperation());
                 transactionGMF.setTypeOperation("GMF");
                 transactionGMF.setFinanceMovement("Débito");
-                serviceTransaction.createTransaction(transactionGMF, idClient, idProduct);
+                serviceTransaction.createTransaction(transactionGMF, idProduct);
                 //Updating the transaction
                 transaction.setFinalBalance(product.getBalance() - (1.004 * transaction.getValueOperation()));
                 transaction.setValueOperation(-transaction.getValueOperation());
@@ -151,18 +142,16 @@ public class ControllerTransaction {
                 transaction.setGMF(-0.004 * transaction.getValueOperation());
                 //Creation of the Receiving transaction
                 Transaction transactionReception = new Transaction();
-                transactionReception.setIdPrincipalClient(transaction.getIdSecondaryClient());
                 transactionReception.setIdPrincipalProduct(transaction.getIdSecondaryProduct());
                 transactionReception.setValueOperation(-transaction.getValueOperation());
                 transactionReception.setFinalBalance(productReception.getBalance() - transaction.getValueOperation());
-                transactionReception.setDescription("Recepción transferencia " + transaction.getDescription() + " desde producto: " + transaction.getIdPrincipalClient());
+                transactionReception.setDescription("Recepción transferencia " + transaction.getDescription() + " desde producto: " + transaction.getIdPrincipalProduct());
                 transactionReception.setResultOperation("Efectiva");
                 transactionReception.setDateOperation(transaction.getDateOperation());
                 transactionReception.setTypeOperation("Recepción por transferencia");
-                transactionReception.setIdSecondaryClient(transaction.getIdPrincipalClient());
                 transactionReception.setIdSecondaryProduct(transaction.getIdPrincipalProduct());
                 transactionReception.setFinanceMovement("Crédito");
-                serviceTransaction.createTransaction(transactionReception, transaction.getIdSecondaryClient(), transaction.getIdSecondaryProduct());
+                serviceTransaction.createTransaction(transactionReception, transaction.getIdSecondaryProduct());
                 //Updating balance in receiving product
                 productReception.setBalance(transactionReception.getFinalBalance());
                 serviceProduct.updateBalance(productReception);
@@ -180,13 +169,13 @@ public class ControllerTransaction {
         serviceProduct.updateBalance(product);
 
 
-        return serviceTransaction.createTransaction(transaction, idClient, idProduct);
+        return serviceTransaction.createTransaction(transaction, idProduct);
     }
 
     //Get transaction effective by product, by client
     @GetMapping("")
-    public List<Transaction> listIdTransaction(@PathVariable("idClient") int idPrincipalClient, @PathVariable("idProduct") int idPrincipalProduct){
-        return serviceTransaction.listIdTransaction(idPrincipalClient, idPrincipalProduct);
+    public List<Transaction> listIdTransaction(@PathVariable("idProduct") int idPrincipalProduct){
+        return serviceTransaction.listIdTransaction(idPrincipalProduct);
     }
 
 

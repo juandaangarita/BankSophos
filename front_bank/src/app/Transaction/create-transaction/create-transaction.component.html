@@ -47,20 +47,9 @@
           />
         </div>
         <div class="container">
-          <p>
-            <button
-              type="button"
-              class="btn btn-outline-primary"
-              (click)="isCollapsed = !isCollapsed"
-              [attr.aria-expanded]="!isCollapsed"
-              aria-controls="collapseExample"
-            >
-              Ver clientes
-            </button>
-          </p>
-          <div id="collapseExample" [ngbCollapse]="isCollapsed">
+          <div id="collapseExample" [ngbCollapse]="isCollapsed()">
             <div class="form-group col-md-8 col-form-label-sm">
-              <label for="typeOperation">Id Cliente</label>
+              <label for="typeOperation"> Cuenta a transferir </label>
               <select
                 id="typeOperation"
                 class="form-select"
@@ -68,19 +57,13 @@
                 [(ngModel)]="transaction.idSecondaryProduct"
                 required
               >
-                <option value="Retiro" selected>Retiro</option>
-              </select>
-            </div>
-            <div class="form-group col-md-8 col-form-label-sm">
-              <label for="typeOperation">Id Producto</label>
-              <select
-                id="typeOperation"
-                class="form-select"
-                name="typeOperation"
-                [(ngModel)]="transaction.idSecondaryClient"
-                required
-              >
-                <option value="Retiro" selected>Retiro</option>
+                <option
+                  *ngFor="let product of products"
+                  [value]="product.idProduct"
+                >
+                  Id {{ product.idProduct }} Cuenta
+                  {{ product.typeAccount }} número {{ product.numberAccount }}
+                </option>
               </select>
             </div>
           </div>
@@ -91,7 +74,7 @@
           style="justify-content: flex-end; display: flex; margin-bottom: 10px"
         >
           <button
-          (click)="saveTransaction()"
+            (click)="saveTransaction()"
             class="btn btn-success"
             style="
               width: 25%;
