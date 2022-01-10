@@ -14,6 +14,6 @@ public interface InterfaceProduct extends JpaRepository<Product, Integer> {
 
     Product findByIdProduct(int idProduct);
 
-    //@Query("select * from products where (state!=?) AND NOT (id_client=? and id_product=?)")
+    @Query(value = "select * from products where (state!=?1) AND NOT (id_client=?2 and id_product=?3)", nativeQuery = true)
     List<Product> findByStateNotAndIdClientNotAndIdProductNot(String state, int idClient, int idProduct);
 }

@@ -40,11 +40,14 @@ public class ControllerProduct {
     @ResponseBody
     public Product save(@RequestBody Product product, @PathVariable("idClient") int idClient, Transaction transaction){
         product.setIdClient(idClient);
+
         transaction.setIdPrincipalProduct(product.getIdProduct());
         transaction.setDescription("Creación producto");
-        transaction.setResultOperation("Effective");
+        transaction.setResultOperation("Efectiva");
         transaction.setFinalBalance(0);
         transaction.setValueOperation(0);
+        transaction.setTypeOperation("Creación cuenta");
+        transaction.setDateOperation(transaction.getDateOperation());
         transactionService.createTransaction(transaction, product.getIdProduct());
         return serviceProduct.addProduct(product, idClient);
 

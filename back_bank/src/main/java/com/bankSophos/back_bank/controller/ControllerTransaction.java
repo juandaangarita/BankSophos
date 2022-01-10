@@ -81,12 +81,9 @@ public class ControllerTransaction {
             }
         }
         else if(transaction.getTypeOperation().equals("Transferencia") && product.getState().equals("activa")){
-            System.out.println(transaction.getIdSecondaryProduct());
-            System.out.println(transaction.getTypeOperation());
             Product productReception = serviceProduct.listIdOneProduct(transaction.getIdSecondaryProduct());
             if (product.getTypeAccount().equals("ahorros") && product.getBalance() - (1.004 * transaction.getValueOperation()) >= 0) {
                 transaction.setIdSecondaryProduct(transaction.getIdSecondaryProduct());
-
                 //Creation of the GMF transaction
                 Transaction transactionGMF = new Transaction();
                 transactionGMF.setIdPrincipalProduct(idProduct);
